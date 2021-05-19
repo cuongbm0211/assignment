@@ -1,0 +1,7 @@
+http://auth.esoft.local/oauth/authorize?response_type=code&client_id=client-esoft-backoffice&scope=read_profile_info&state=tWyUF89JA-4SwdUEe3YRHXGVJcwyQeidp65mUtE3WL8%3D&redirect_uri=http://editor.local/login
+
+curl -X POST --user client-esoft-backoffice:123456 http://auth.esoft.local/oauth/token \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -d "code=z6XGR6&grant_type=authorization_code&redirect_uri=http://editor.local/login&scope=read_profile_info"
+
+curl -X GET http://auth.esoft.local/api/v1/users/me -H "authorization: Bearer 5c01de61-4004-4906-9249-9ec0195cc673"
