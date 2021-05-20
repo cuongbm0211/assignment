@@ -28,15 +28,14 @@ public class UserController {
         return "user/list-users";
     }
 
-    @PostMapping
+    @PostMapping("/process-add-user")
     public String createUser(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
-//        userService.save(user);
-
-        return "user/list-users";
+        userService.create(user);
+        return "redirect:/users";
     }
 
     @RequestMapping("/api/v1/users/me")
@@ -52,7 +51,4 @@ public class UserController {
 
         return ResponseEntity.ok(profile);
     }
-
-
-
 }

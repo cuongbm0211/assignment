@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{:: #activities-header},
+                                                ~{:: #activities-main-content}
+                                               )}">
+<body>
+
+<div id="activities-header">
+  User Activities
+</div>
+
+<div id="activities-main-content">
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Type</th>
+      <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="activity: ${listActivities}">
+      <td th:text="${activity.id}" />
+      <td th:text="${activity.user.username}" />
+      <td th:text="${activity.activityType}" />
+      <td th:text="${activity.createdDate}" />
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

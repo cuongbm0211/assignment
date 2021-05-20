@@ -21,6 +21,14 @@ CREATE TABLE if not exists `users_roles` (
     CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
 
+CREATE TABLE if not exists `user_activities` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `activity_type` varchar(45) NOT NULL,
+    `created_date` DATETIME NULL,
+    PRIMARY KEY (`id`)
+);
+
 create table if not exists oauth_access_token (
     token_id VARCHAR(255),
     token LONG VARBINARY,

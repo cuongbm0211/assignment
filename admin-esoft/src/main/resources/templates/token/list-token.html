@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{:: #tokens-header},
+                                                ~{:: #tokens-main-content}
+                                               )}">
+<body>
+
+<div id="tokens-header">
+  Token Listing
+</div>
+
+<div id="tokens-main-content">
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>Token ID</th>
+      <th>Authentication ID</th>
+      <th>Username</th>
+      <th>Client ID</th>
+      <th>Refresh Token</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="token: ${listTokens}">
+      <td th:text="${token.id}"></td>
+      <td th:text="${token.authenticationId}"></td>
+      <td th:text="${token.userName}"></td>
+      <td th:text="${token.clientId}"></td>
+      <td th:text="${token.refreshToken}"></td>
+      <td>
+        <form th:action="@{'/tokens/revoke/' + ${token.id}}" method="post">
+          <button type="submit" class="btn btn-danger btn-sm">Revoke</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

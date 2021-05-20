@@ -4,13 +4,13 @@ create table if not exists `users` (
     `password` varchar(64) NOT NULL,
     `enabled` tinyint(4) DEFAULT NULL,
     PRIMARY KEY (`user_id`)
-    );
+);
 
 CREATE TABLE if not exists `roles` (
     `role_id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(45) NOT NULL,
     PRIMARY KEY (`role_id`)
-    );
+);
 
 CREATE TABLE if not exists `users_roles` (
     `user_id` int(11) NOT NULL,
@@ -19,7 +19,15 @@ CREATE TABLE if not exists `users_roles` (
     KEY `role_fk_idx` (`role_id`),
     CONSTRAINT `role_fk` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`),
     CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-    );
+);
+
+CREATE TABLE if not exists `user_activities` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `activity_type` varchar(45) NOT NULL,
+    `created_date` DATETIME NULL,
+    PRIMARY KEY (`id`)
+);
 
 create table if not exists oauth_access_token (
     token_id VARCHAR(255),
@@ -29,7 +37,7 @@ create table if not exists oauth_access_token (
     client_id VARCHAR(255),
     authentication LONG VARBINARY,
     refresh_token VARCHAR(255)
-    );
+);
 
 create table if not exists oauth_refresh_token (
     token_id VARCHAR(255),
